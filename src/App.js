@@ -14,12 +14,21 @@ function App() {
         { id: 3, title: "JavaScript 3", body: "Description" },
     ]);
     const [title, setTitle] = useState('');
-    const bodyInputRef = useRef();
+    const [body, setBody] = useState('');
 
     function addNewPost(e) {
         e.preventDefault();
 
-        console.log(title);
+        const newPost = {
+            id: Date.now(),
+            title,
+            body
+        }
+
+        setPosts([...posts, newPost]);
+
+        setTitle('');
+        setBody('');
     }
 
     return (
@@ -32,9 +41,10 @@ function App() {
                     type="text" 
                     placeholder="Название поста" 
                 />
-                {/*Неуправляемый\Неконтролируемый компонент*/}
+                {/*Управляемый компонент*/}
                 <MyInput 
-                    ref={bodyInputRef}
+                    value={body}
+                    onChange={e => setBody(e.target.value)}
                     type="text" 
                     placeholder="Описание поста" 
                 />
