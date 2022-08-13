@@ -2,8 +2,8 @@ import React, { useMemo, useState } from "react";
 import PostFilter from "./components/PostFilter";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
-import MyInput from "./components/UI/input/MyInput";
-import MySelect from "./components/UI/select/MySelect";
+import MyButton from "./components/UI/button/MyButton";
+import MyModal from "./components/UI/MyModal/MyModal";
 import "./styles/App.css";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
         { id: 3, title: "вв 3", body: "яя" },
     ]);
     const [filter, setFilter] = useState({sort: '', query: ''});
+    const [modal, setModal] = useState(false);
 
     const sortedPosts = useMemo(() => {
         if (filter.sort) {
@@ -27,6 +28,7 @@ function App() {
 
     function createPost(newPost) {
         setPosts([...posts, newPost]);
+        setModal(false);
     }
 
     function removePost(post) {
@@ -36,7 +38,12 @@ function App() {
 
     return (
         <div className="App">
-            <PostForm create={createPost} />
+            <MyButton style={{marginTop: 30}} onClick={() => setModal(true)}>
+                Создать пост
+            </MyButton>
+            <MyModal visible={modal} setVisible={setModal}>
+                <PostForm create={createPost} />
+            </MyModal>
             <hr style={{margin: '15px 0'}}/>
             <PostFilter 
                 filter={filter}
