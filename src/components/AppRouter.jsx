@@ -10,13 +10,13 @@ const AppRouter = () => {
     return (
         <div className="App">
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/posts" element={<Posts />} />
-                <Route path="/error" element={<Error />} />
+                <Route path="react-fundamental" element={<App />} />
+                <Route path="react-fundamental/about" element={<About />} />
+                <Route path="react-fundamental/posts" element={<Posts />} />
+                <Route path="react-fundamental/error" element={<Error />} />
                 <Route 
                     path="*" 
-                    element={<Navigate to="/error" replace />} 
+                    element={<Navigate to="react-fundamental/error" replace />} 
                 />
             </Routes>
         </div>
