@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import PostService from '../API/PostService';
 import PostFilter from '../components/PostFilter';
 import PostForm from "../components/PostForm";
@@ -49,7 +50,7 @@ function Posts()  {
 
 
     return (
-        <div className="App">
+        <div>
             <MyButton style={{marginTop: 30}} onClick={() => setModal(true)}>
                 Создать пост
             </MyButton>

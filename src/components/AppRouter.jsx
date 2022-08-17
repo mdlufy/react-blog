@@ -1,25 +1,23 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import About from "../pages/About";
-import Posts from "../pages/Posts";
 import Error from "../pages/Error";
-import App from "../App";
+import PostIdPage from "../pages/PostIdPage";
+import Posts from "../pages/Posts";
 import "../styles/App.css";
+import Layout from "./Layout";
 
 const AppRouter = () => {
     return (
-        <div className="App">
-            <Routes>
-                <Route path="react-fundamental" element={<App />} />
-                <Route path="react-fundamental/about" element={<About />} />
-                <Route path="react-fundamental/posts" element={<Posts />} />
-                <Route path="react-fundamental/error" element={<Error />} />
-                <Route 
-                    path="*" 
-                    element={<Navigate to="react-fundamental/error" replace />} 
-                />
-            </Routes>
-        </div>
+        <Routes>
+            <Route path="react-fundamental" element={<Layout />}>
+                <Route path="about" element={<About />} />
+                <Route path="posts" element={<Posts />} />
+                <Route path="posts/:id" element={<PostIdPage />} />
+                <Route path="error" element={<Error />} />
+                <Route path="*" element={<Navigate to="error" replace />} />
+            </Route>
+        </Routes>
     );
 };
 
