@@ -14,13 +14,13 @@ const Navbar = () => {
 
     return (
         <div className={cl.navbar}>
-            <MyButton onClick={logout}>
-                Выйти
-            </MyButton>
             <div className={cl.navbar__links}>
                 <Link className={cl.navbar__item} to="about">О сайте</Link>
                 <Link className={cl.navbar__item} to="posts">Посты</Link>
             </div>
+            <MyButton onClick={logout}>
+                Выйти
+            </MyButton>
         </div>
     );
 };
