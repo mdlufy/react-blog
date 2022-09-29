@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context";
 import MyButton from "../button/MyButton";
 import cl from './Navbar.module.css';
 
 const Navbar = () => {
     const {isAuth, setIsAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const logout = () => {
         setIsAuth(false);
         localStorage.removeItem('auth');
+    }
+
+    const login = () => {
+        navigate('login');
     }
 
     return (
@@ -18,9 +23,15 @@ const Navbar = () => {
                 <Link className={cl.navbar__item} to="about">О сайте</Link>
                 <Link className={cl.navbar__item} to="posts">Посты</Link>
             </div>
-            <MyButton onClick={logout}>
-                Выйти
-            </MyButton>
+            {isAuth ? 
+                <MyButton onClick={logout}>
+                    Выйти
+                </MyButton> 
+            :
+                <MyButton onClick={login}>
+                    Войти
+                </MyButton>
+            }
         </div>
     );
 };
